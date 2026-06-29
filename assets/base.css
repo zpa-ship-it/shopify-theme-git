@@ -4012,3 +4012,25 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
     margin-top: calc(var(--header-height) * var(--transparent-header-offset-boolean) * -1);
   }
 }
+
+<section class="hero">
+  <video autoplay muted loop class="bg-video">
+    <source src="https://cdn.shopify.com/videos/c/o/v/1c6429d4b8ec4d9c8bc659e207942e9e.mp4" type="video/mp4">
+  </video>
+
+  <div class="overlay"></div>
+
+  <header class="nav">
+    <div class="logo">Porte Luxe</div>
+    <div class="menu">
+      <a>The Watches</a>
+      <a>The Accessories</a>
+      <a>Contact</a>
+    </div>
+  </header>
+
+  <div class="center">
+    <h1>SOUS-MARINE</h1>
+    <button>LEARN MORE</button>
+  </div>
+</section>
