@@ -141,53 +141,283 @@
       {% render 'quick-add-modal' %}
     {% endif %}
   </body>
-  <div id="video-intro">
-  <video id="intro-video" autoplay muted playsinline>
-    <source src="https://cdn.shopify.com/videos/c/o/v/1c6429d4b8ec4d9c8bc659e207942e9e.mp4" type="video/mp4">
+  <section class="sous-marine-hero">
+  <video class="sous-marine-bg" autoplay muted loop playsinline>
+    <source src="URL_DE_TA_VIDEO" type="video/mp4">
   </video>
 
-  <button id="enter-shop">Entrer dans la boutique</button>
-</div>
+  <div class="sous-marine-overlay"></div>
+  <div class="sous-marine-blur sous-marine-blur-1"></div>
+  <div class="sous-marine-blur sous-marine-blur-2"></div>
+
+  <div class="sous-marine-particles">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <header class="sous-marine-nav">
+    <div class="sous-marine-logo">LUMA</div>
+    <button class="sous-marine-menu" aria-label="Menu">
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <div class="sous-marine-content">
+    <h1>SOUS-MARINE</h1>
+    <a href="/collections/all" class="sous-marine-cta">LEARN MORE</a>
+  </div>
+</section>
 
 <style>
-  #video-intro {
-    position: fixed;
-    inset: 0;
-    z-index: 999999;
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .sous-marine-hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
     overflow: hidden;
+    background: #020507;
+    color: #ffffff;
   }
 
-  #video-intro video {
+  .sous-marine-bg {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    z-index: 1;
+    filter: brightness(0.46) contrast(1.18) saturate(0.82);
+    animation: sousMarineDrift 24s ease-in-out infinite alternate;
   }
 
-  #enter-shop {
+  .sous-marine-overlay {
     position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 14px 28px;
-    border: none;
-    background: #ffffff;
-    color: #000000;
-    font-size: 16px;
-    font-weight: 600;
+    inset: 0;
+    z-index: 2;
+    background:
+      radial-gradient(circle at 50% 42%, rgba(255,255,255,0.08), transparent 22%),
+      radial-gradient(circle at 50% 105%, rgba(0,0,0,0.92), transparent 45%),
+      linear-gradient(to bottom, rgba(0,0,0,0.42), rgba(0,0,0,0.22) 42%, rgba(0,0,0,0.76));
+  }
+
+  .sous-marine-blur {
+    position: absolute;
+    z-index: 3;
+    border-radius: 999px;
+    filter: blur(70px);
+    opacity: 0.24;
+    pointer-events: none;
+  }
+
+  .sous-marine-blur-1 {
+    width: 360px;
+    height: 360px;
+    left: 8%;
+    top: 18%;
+    background: rgba(92, 138, 145, 0.55);
+    animation: sousMarineFloat 18s ease-in-out infinite alternate;
+  }
+
+  .sous-marine-blur-2 {
+    width: 420px;
+    height: 420px;
+    right: 4%;
+    bottom: 8%;
+    background: rgba(21, 54, 62, 0.72);
+    animation: sousMarineFloat 22s ease-in-out infinite alternate-reverse;
+  }
+
+  .sous-marine-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 8;
+    height: 86px;
+    padding: 0 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sous-marine-logo {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 7px;
+    color: rgba(255,255,255,0.92);
+  }
+
+  .sous-marine-menu {
+    width: 48px;
+    height: 38px;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.045);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 7px;
+    padding: 0 14px;
     cursor: pointer;
-    border-radius: 4px;
   }
 
-  #enter-shop:hover {
-    background: #eeeeee;
+  .sous-marine-menu span {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: rgba(255,255,255,0.9);
   }
 
-  body.intro-active {
-    overflow: hidden;
+  .sous-marine-content {
+    position: absolute;
+    inset: 0;
+    z-index: 7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 34px;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .sous-marine-content h1 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(58px, 9vw, 152px);
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: 0;
+    color: #ffffff;
+    text-shadow: 0 18px 60px rgba(0,0,0,0.72);
+    opacity: 0;
+    animation: sousMarineFade 2.8s ease forwards;
+  }
+
+  .sous-marine-cta {
+    margin-top: 42px;
+    padding: 15px 34px;
+    border: 1px solid rgba(255,255,255,0.34);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.055);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-decoration: none;
+    pointer-events: auto;
+    opacity: 0;
+    animation: sousMarineFade 3s ease 0.65s forwards;
+    transition: background 1.2s ease, border-color 1.2s ease;
+  }
+
+  .sous-marine-cta:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.62);
+  }
+
+  .sous-marine-particles {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  .sous-marine-particles span {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.42);
+    filter: blur(1px);
+    animation: sousMarineParticle 18s linear infinite;
+  }
+
+  .sous-marine-particles span:nth-child(1) { left: 12%; top: 78%; animation-delay: 0s; }
+  .sous-marine-particles span:nth-child(2) { left: 22%; top: 68%; animation-delay: 3s; }
+  .sous-marine-particles span:nth-child(3) { left: 34%; top: 84%; animation-delay: 6s; }
+  .sous-marine-particles span:nth-child(4) { left: 47%; top: 72%; animation-delay: 2s; }
+  .sous-marine-particles span:nth-child(5) { left: 58%; top: 80%; animation-delay: 7s; }
+  .sous-marine-particles span:nth-child(6) { left: 68%; top: 66%; animation-delay: 4s; }
+  .sous-marine-particles span:nth-child(7) { left: 77%; top: 86%; animation-delay: 8s; }
+  .sous-marine-particles span:nth-child(8) { left: 86%; top: 74%; animation-delay: 1s; }
+  .sous-marine-particles span:nth-child(9) { left: 43%; top: 62%; animation-delay: 5s; }
+  .sous-marine-particles span:nth-child(10) { left: 91%; top: 58%; animation-delay: 9s; }
+
+  @keyframes sousMarineFade {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+      filter: blur(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes sousMarineDrift {
+    from {
+      transform: scale(1.04);
+    }
+    to {
+      transform: scale(1.11) translateY(-1.5%);
+    }
+  }
+
+  @keyframes sousMarineFloat {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(22px, -28px, 0);
+    }
+  }
+
+  @keyframes sousMarineParticle {
+    from {
+      transform: translateY(60px);
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.42;
+    }
+    80% {
+      opacity: 0.22;
+    }
+    to {
+      transform: translateY(-140px);
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 749px) {
+    .sous-marine-nav {
+      height: 74px;
+      padding: 0 22px;
+    }
+
+    .sous-marine-logo {
+      font-size: 15px;
+      letter-spacing: 5px;
+    }
+
+    .sous-marine-content h1 {
+      font-size: clamp(48px, 15vw, 82px);
+    }
+
+    .sous-marine-cta {
+      margin-top: 34px;
+      padding: 14px 28px;
+      font-size: 10px;
+    }
   }
 </style>
 
